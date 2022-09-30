@@ -7,4 +7,5 @@ edition = "2021"
 
 [dependencies]
 component = "0.1.0"
+crate = "0.0.2"
 num = "0.4.0"

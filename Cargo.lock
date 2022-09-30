@@ -15,10 +15,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c7c91726d7842f5bdb6d2abce1006ea86441ef0be753040ebec487070827c79d"
 
 [[package]]
+name = "crate"
+version = "0.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ba551890c7c7d0917c71ca40559c42156ffffd703c45558114968cecb83bfd97"
+
+[[package]]
 name = "mandelbrot_rust"
 version = "0.1.0"
 dependencies = [
  "component",
+ "crate",
  "num",
 ]
 
