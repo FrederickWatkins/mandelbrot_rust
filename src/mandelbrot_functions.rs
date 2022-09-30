@@ -6,7 +6,7 @@ pub fn pos_part_of_set(w: u32, h: u32, x: u32, y: u32, iterations: u32) -> bool 
 
 fn comp_part_of_set(c: Complex<f64>, iterations: u32) -> bool {
     let mut z = Complex::<f64>::new(0.0, 0.0);
-    for i in 0..iterations {
+    for _i in 0..iterations {
         z = (z * z) + c;
         if z.norm() > 6000000.0 {
             return false;
