@@ -5,37 +5,48 @@ pub fn pos_part_of_set(w:u32, h:u32, x:u32, y:u32, iterations: u32) -> bool {
 }
 
 fn comp_part_of_set(c: Complex<f64>, iterations: u32) -> bool {
-    let z = Complex::<f64>::new(0.0, 0.0);
+    let mut z = Complex::<f64>::new(0.0, 0.0);
     for i in 0..iterations {
         z = (z * z) + c;
-        if z.norm() > 6000000 {
-            false
+        if z.norm() > 6000000.0 {
+            return false;
         }
     }
+    z.norm() < 1000.0
 }
 
 fn screen_to_complex(w: u32, h: u32, x: u32, y: u32) -> Complex<f64> {
-    let ratio = calculate_ratio(w, h);
-    let r = (x.into() - (w.into() / 1.5)) * ratio;
-    let i = ((h.into() / 2) - y.into()) * ratio;
+    let wf: f64 = w.into();
+    let hf: f64 = h.into();
+    let xf: f64 = x.into();
+    let yf: f64 = y.into();
+
+    let ratio = calculate_ratio(wf, hf);
+
+    let r = (xf - (wf / 1.5)) * ratio;
+    let i = ((hf / 2.0) - yf) * ratio;
     Complex::<f64>::new(r, i)
 }
 
-fn calculate_ratio(w: u32, h: u32) -> f64 {
-    let ratio: f64;
-    let wf: f64 = w.into();
-    let hf: f64 = h.into();
-    if wf > hf * 1.5 {
-        ratio = 2.0 / hf;
+fn calculate_ratio(w: f64, h: f64) -> f64 {
+    if w > h * 1.5 {
+        2.0 / h
     } else {
-        ratio = 3.0 / wf;
+        3.0 / w
     }
-    ratio
 }
 
 #[cfg(test)]
 mod mandelbrot_functions_test {
+    use super::*;
+
     #[test]
-    fn pos_part_of_set_test1() {
+    fn calculate_ratio_test_1() {
+        assert_eq!(calculate_ratio(500.0, 500.0), 3.0/500.0);
+    }
+
+    #[test]
+    fn calculate_ratio_test_2() {
+        assert_eq!(calculate_ratio(2000.0, 500.0), 2.0/500.0);
     }
 }
