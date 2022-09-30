@@ -1,6 +1,6 @@
 use num::Complex;
 
-pub fn pos_part_of_set(w:u32, h:u32, x:u32, y:u32, iterations: u32) -> bool {
+pub fn pos_part_of_set(w: u32, h: u32, x: u32, y: u32, iterations: u32) -> bool {
     comp_part_of_set(screen_to_complex(w, h, x, y), iterations)
 }
 
@@ -42,11 +42,11 @@ mod mandelbrot_functions_test {
 
     #[test]
     fn calculate_ratio_test_1() {
-        assert_eq!(calculate_ratio(500.0, 500.0), 3.0/500.0);
+        assert_eq!(calculate_ratio(500.0, 500.0), 3.0 / 500.0);
     }
 
     #[test]
     fn calculate_ratio_test_2() {
-        assert_eq!(calculate_ratio(2000.0, 500.0), 2.0/500.0);
+        assert_eq!(calculate_ratio(2000.0, 500.0), 2.0 / 500.0);
     }
 }
