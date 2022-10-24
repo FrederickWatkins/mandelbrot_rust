@@ -74,7 +74,7 @@ mod mandelbrot_functions_test {
     #[test]
     fn screen_to_complex_test_1() {
         let calc = MandelbrotCalculator::new(500, 500, 100);
-        assert!(calc.screen_to_complex(250, 250).norm() < 0.5)
+        assert!((calc.screen_to_complex(250, 250) - Complex::<f64>::new(-0.5, 0.0)).norm() <= 0.01);
     }
 
     #[test]
@@ -82,7 +82,7 @@ mod mandelbrot_functions_test {
         let calc = MandelbrotCalculator::new(1920, 1080, 100);
         assert_eq!(
             calc.screen_to_complex(1920, 1080),
-            Complex::<f64>::new(16.0 / 9.0, -1.0)
+            Complex::<f64>::new(32.0 / 27.0, -1.0)
         )
     }
 }
