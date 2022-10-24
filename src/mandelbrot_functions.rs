@@ -1,5 +1,5 @@
 use num::Complex;
-
+#[derive(Copy, Clone)]
 struct MandelbrotCalculator {
     width: f64,
     height: f64,
@@ -8,10 +8,21 @@ struct MandelbrotCalculator {
 }
 
 impl MandelbrotCalculator {
+    pub fn new(width: u32, height: u32, iterations: u32) -> Self {
+        let mut new = MandelbrotCalculator {
+            width: 0.0,
+            height: 0.0,
+            ratio: 0.0,
+            iterations: 0,
+        };
+        new.change_config(width, height, iterations);
+        new
+    }
+
     pub fn pos_part_of_set(self, x: u32, y: u32) -> bool {
         self.comp_part_of_set(self.screen_to_complex(x, y))
     }
-    
+
     pub fn comp_part_of_set(self, c: Complex<f64>) -> bool {
         let mut z = Complex::<f64>::new(0.0, 0.0);
         for _i in 0..self.iterations {
@@ -22,19 +33,20 @@ impl MandelbrotCalculator {
         }
         z.norm() < 1000.0
     }
-    
+
     fn screen_to_complex(self, x: u32, y: u32) -> Complex<f64> {
         let xf: f64 = x.into();
         let yf: f64 = y.into();
-    
+
         let r = (xf - (self.width / 1.5)) * self.ratio;
         let i = ((self.height / 2.0) - yf) * self.ratio;
         Complex::<f64>::new(r, i)
     }
-    
-    fn change_config(mut self, width: u32, height: u32) {
+
+    fn change_config(&mut self, width: u32, height: u32, iterations: u32) {
         self.width = width.into();
         self.height = height.into();
+        self.iterations = iterations;
         if self.width > self.height * 1.5 {
             self.ratio = 2.0 / self.height;
         } else {
@@ -42,8 +54,6 @@ impl MandelbrotCalculator {
         }
     }
 }
-
-
 
 #[cfg(test)]
 mod mandelbrot_functions_test {
