@@ -36,6 +36,7 @@ fn calculate_ratio(w: f64, h: f64) -> f64 {
     }
 }
 
+
 #[cfg(test)]
 mod mandelbrot_functions_test {
     use super::*;
@@ -48,5 +49,15 @@ mod mandelbrot_functions_test {
     #[test]
     fn calculate_ratio_test_2() {
         assert_eq!(calculate_ratio(2000.0, 500.0), 2.0 / 500.0);
+    }
+
+    #[test]
+    fn screen_to_complex_test_1() {
+        assert!(screen_to_complex(500, 500, 250, 250).norm() < 0.5)
+    }
+
+    #[test]
+    fn screen_to_complex_test_2() {
+        assert_eq!(screen_to_complex(1920, 1080, 1920, 1080), Complex::<f64>::new(16.0 / 9.0, -1.0))
     }
 }
