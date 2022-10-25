@@ -1,3 +1,6 @@
+use mandelbrot_calculator;
+use termion;
+
 fn main(){
-    println!("Hello World!");
+    println!("{:?}", termion::terminal_size());
 }
