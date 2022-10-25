@@ -1,5 +1,5 @@
 use num::Complex;
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq, PartialOrd)]
 struct MandelbrotCalculator {
     width: f64,
     height: f64,
@@ -85,4 +85,5 @@ mod mandelbrot_functions_test {
             Complex::<f64>::new(32.0 / 27.0, -1.0)
         )
     }
+    
 }

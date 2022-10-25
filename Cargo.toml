@@ -3,6 +3,27 @@ name = "mandelbrot_rust"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "mandelbrot_calculator"
+path = "src/lib.rs"
+test = true
+bench = true
+harness = true
+edition = "2021"
+crate-type = ["lib"]
+
+[[bin]]
+name = "mandelbrot_calculator_cl_demo"
+path = "demo/command_line_app/main.rs"
+test = true
+edition = "2021"
+
+[[bin]]
+name = "mandelbrot_calculator_graphic_demo"
+path = "demo/graphical_app/main.rs"
+test = true
+edition = "2021"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
